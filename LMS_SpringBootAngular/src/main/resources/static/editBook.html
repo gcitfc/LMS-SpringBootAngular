@@ -1,0 +1,57 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Edit / Delete Book</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="bookController">
+<form>
+  <div class="form-group row">
+    <label for="books" class="col-sm-2 col-form-label">Book</label>
+   	<div class="col-sm-6">
+	    <select class="form-control"  ng-model="bookTitle" id="bookTitle">
+	      <option ng-repeat="b in books | orderBy : '+title'" value={{b}}>{{b.title}}</option>
+	    </select>   
+  	</div>
+  </div>
+  <div class="form-group row">
+    <label for="inputTitle" class="col-sm-2 col-form-label">New Title</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="newTitle" id="newTitle" placeholder="Title">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="authors" class="col-sm-2 col-form-label">Author(s)</label>
+   	<div class="col-sm-6">
+	    <select multiple class="form-control"  ng-model="bookAuthors" id="bookAuthors">
+	      <option ng-repeat="a in authors | orderBy : '+authorName'" value={{a}}>{{a.authorName}}</option>
+	    </select>   
+  	</div>
+  </div>
+  <div class="form-group row">
+    <label for="genres" class="col-sm-2 col-form-label">Genre(s)</label>
+   	<div class="col-sm-6">
+	    <select multiple class="form-control" ng-model="bookGenres" id="bookGenres">
+	      <option ng-repeat="g in genres | orderBy : '+genreName'" value={{g}}>{{g.genreName}}</option>
+	    </select>   
+  	</div>
+  </div>
+  <div class="form-group row">
+    <label for="publisher" class="col-sm-2 col-form-label">Publisher</label>
+   	<div class="col-sm-6">
+	    <select class="form-control" ng-model="bookPublisher" id="bookPublisher">
+	      <option ng-repeat="p in publishers | orderBy : '+pubName'" value={{p}}>{{p.pubName}}</option>
+	    </select>   
+  	</div>
+  </div>
+  
+  
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-primary" ng-click="updateBook()">Submit</button>
+    <button class="btn btn-danger" ng-click="deleteBook()">Delete</button>
+    <button class="btn btn-secondary" ng-click="cancelCreate()">Cancel</button>
+  </div>
+
+</form>
+	
+</div>

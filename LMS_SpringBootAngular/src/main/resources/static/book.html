@@ -1,0 +1,31 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Book Database</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="bookController">
+	<h2>{{numOfBooks}} Books found in LMS</h2>
+	<a href="#/newBook"><button type="button" class="btn btn-success">+ New Book</button></a>
+	<a href="#/editBook"><button type="button" class="btn btn-warning">Edit / Delete Book</button></a>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Book Title</th>
+				<th scope="col">Authors</th>
+				<th scope="col">Genres</th>
+				<th scope="col">Publisher</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="b in books | orderBy : '+title'">
+				<td scope="col">{{$index+1}}</td>
+				<td scope="col">{{b.title}}</td>
+				<td scope="col"><span ng-repeat="a in b.authors | orderBy : '+authorName'">{{a.authorName}}, </span></td>
+				<td scope="col"><span ng-repeat="g in b.genres | orderBy : '+genreName'">{{g.genreName}}, </span></td>
+				<td scope="col">{{b.publisher.pubName}}</td>	
+			</tr>
+		</tbody>
+	</table>
+</div>
