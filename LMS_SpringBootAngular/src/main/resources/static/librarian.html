@@ -1,0 +1,104 @@
+<div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Welcome, Librarian!</h1>
+      <h2>Choose a branch to manage</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="librarianController">
+<form>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Branch Name</label>
+   	<div class="col-sm-6">
+	    <select class="form-control"  ng-model="thisBranch" id="thisBranch">
+	      <option ng-repeat="b in branches | orderBy : '+branchName'" value={{b}}>{{b.branchName}}</option>
+	    </select>   
+  	</div>
+  	<div class="col-sm-4">
+    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit Branch Info >></button>
+  	<button type="submit" class="btn btn-primary" ng-click="addCopies()" >Add Book Copies >></button>
+  </div>
+  </div>
+</form>
+
+<table class="table table-hover" >
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Book Title</th>
+				<th scope="col">Number of Copies</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="bc in copies | orderBy : '-noOfCopies'">
+				<td scope="col">{{$index+1}}</td>
+				<td scope="col">{{bc.book.title}}</td>
+				<td scope="col">{{bc.noOfCopies}}</td>
+				<td scope="col"><button type="submit" class="btn btn-primary" ng-click="editCopies(bc)" data-toggle="modal" data-target="#addModal">Add</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Branch</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+<form>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">New Branch Name</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="newName" id="newName" placeholder="Branch Name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputAddress" class="col-sm-2 col-form-label">New Address</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="newAddress" id="newAddress" placeholder="Address">
+    </div>
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-primary" ng-click="updateBranch()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">New Number of Copies</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="col-sm-6">
+      		<input type="text" class="form-control" ng-model="newCopies" id="newCopies" placeholder="Ext. 50">
+    	</div>
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-primary" ng-click="updateCopies()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>

@@ -1,0 +1,29 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Publishers</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="publisherController">
+	<h2>{{numOfPublishers}} Publishers found in LMS</h2>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Publisher Name</th>
+				<th scope="col">Phone#</th>
+				<th scope="col">Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="p in publishers | orderBy : '+pubName'">
+				<td scope="col">{{$index+1}}</td>
+				<td scope="col">{{p.pubName}}</td>
+				<td scope="col"># {{p.pubPhone}}</td>
+				<td scope="col">{{p.pubAddress}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="#/createPublisher"><button type="button" class="btn btn-success">+ New Publisher</button></a>
+	<a href="#/editPublisher"><button type="button" class="btn btn-warning">Edit / Delete Publisher</button></a>
+</div>

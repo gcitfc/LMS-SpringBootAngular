@@ -1,0 +1,43 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Edit / Delete Publisher</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="publisherController">
+<form>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Publisher</label>
+   	<div class="col-sm-6">
+	    <select class="form-control"  ng-model="thisPublisher" id="thisPublisher">
+	      <option ng-repeat="p in publishers | orderBy : '+pubName'" value={{p}}>{{p.pubName}}</option>
+	    </select>   
+  	</div>
+  </div>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">New Publisher Name</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="newName" id="newName" placeholder="Publisher Name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputAddress" class="col-sm-2 col-form-label">New Address</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="newAddress" id="newAddress" placeholder="Address">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPhone" class="col-sm-2 col-form-label">New Phone Number</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="newPhone" id="newPhone" placeholder="Ext. 123 456 7890">
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-primary" ng-click="updatePublisher()">Submit</button>
+    <button class="btn btn-danger" ng-click="deletePublisher()">Delete</button>
+    <button class="btn btn-secondary" ng-click="cancelCreate()">Cancel</button>
+  </div>
+
+</form>
+	
+</div>

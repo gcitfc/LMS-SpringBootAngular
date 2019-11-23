@@ -1,0 +1,23 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Create New Author</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="authorController">
+<form>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Author Name</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="authorName" id="authorName" placeholder="Name">
+    </div>
+  </div>
+  
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-primary" ng-click="createAuthor()">Create</button>
+    <button class="btn btn-danger" ng-click="cancelCreate()">Cancel</button>
+  </div>
+
+</form>
+	
+</div>

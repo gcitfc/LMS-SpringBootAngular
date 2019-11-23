@@ -1,0 +1,23 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Create New Genre</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="genreController">
+<form>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Genre Name</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="genreName" id="genreName" placeholder="Genre Name">
+    </div>
+  </div>
+  
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-primary" ng-click="createGenre()">Create</button>
+    <button class="btn btn-danger" ng-click="cancelCreate()">Cancel</button>
+  </div>
+
+</form>
+	
+</div>

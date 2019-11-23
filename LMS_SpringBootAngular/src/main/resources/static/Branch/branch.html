@@ -1,0 +1,27 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Branch</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="branchController">
+	<h2>{{numOfBranches}} Branches found in LMS</h2>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Branch Name</th>
+				<th scope="col">Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="b in branches | orderBy : '+branchName'">
+				<td scope="col">{{$index+1}}</td>
+				<td scope="col">{{b.branchName}}</td>
+				<td scope="col">{{b.address}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="#/createBranch"><button type="button" class="btn btn-success">+ New Branch</button></a>
+	<a href="#/editBranch"><button type="button" class="btn btn-warning">Edit / Delete Branch</button></a>
+</div>

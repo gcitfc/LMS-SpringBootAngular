@@ -1,0 +1,27 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Genres</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="genreController">
+	<h2>{{numOfGenres}} Genres found in LMS</h2>
+	<a href="#/createGenre"><button type="button" class="btn btn-success">+ New Genre</button></a>
+	<a href="#/editGenre"><button type="button" class="btn btn-warning">Edit / Delete Genre</button></a>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Genre Name</th>
+				<th scope="col">Books</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="g in genres | orderBy : '+genreName'">
+				<td scope="col">{{$index+1}}</td>
+				<td scope="col">{{g.genreName}}</td>
+				<td scope="col"><span ng-repeat="b in g.books | orderBy : '+title'">{{b.title}}, </span></td>		
+			</tr>
+		</tbody>
+	</table>
+</div>

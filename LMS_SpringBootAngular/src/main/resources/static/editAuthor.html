@@ -1,0 +1,31 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2>Edit / Delete Author</h2>
+    </div>
+</div>
+
+<div class="container" ng-controller="authorController">
+<form>
+  <div class="form-group row">
+    <label for="authors" class="col-sm-2 col-form-label">Author</label>
+   	<div class="col-sm-6">
+	    <select class="form-control"  ng-model="thisAuthor" id="thisAuthor">
+	      <option ng-repeat="a in authors | orderBy : '+authorName'" value={{a}}>{{a.authorName}}</option>
+	    </select>   
+  	</div>
+  </div>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">New Name</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" ng-model="newName" id="newName" placeholder="Name">
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-primary" ng-click="updateAuthor()">Submit</button>
+    <button class="btn btn-danger" ng-click="deleteAuthor()">Delete</button>
+    <button class="btn btn-secondary" ng-click="cancelCreate()">Cancel</button>
+  </div>
+
+</form>
+	
+</div>
