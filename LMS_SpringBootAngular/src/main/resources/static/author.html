@@ -6,24 +6,21 @@
 
 <div class="container" ng-controller="authorController">
 	<h2>{{numOfAuthors}} Authors found in LMS</h2>
-	<a href="#/newAuthor"><button type="button" class="btn btn-success">+ New Author</button></a>
+	<a href="#/createAuthor"><button type="button" class="btn btn-success">+ New Author</button></a>
+	<a href="#/editAuthor"><button type="button" class="btn btn-warning">Edit / Delete Author</button></a>
 	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Author Name</th>
 				<th scope="col">Books Written</th>
-				<th scope="col"></th>
-				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="a in authors | orderBy : '+authorName'">
 				<td scope="col">{{$index+1}}</td>
 				<td scope="col">{{a.authorName}}</td>
-				<td scope="col"><span ng-repeat="b in a.books | orderBy : '+title'">{{b.title}}, </span></td>
-				<td scope="col"><button type="button" class="btn btn-primary">Edit</button></td>
-				<th scope="col"><button type="button" class="btn btn-danger">Delete</button></th>		
+				<td scope="col"><span ng-repeat="b in a.books | orderBy : '+title'">{{b.title}}, </span></td>		
 			</tr>
 		</tbody>
 	</table>

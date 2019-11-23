@@ -13,5 +13,45 @@ lmsApp.config(["$routeProvider", function($routeProvider){
 		templateUrl: "editBook.html"
 	}).when("/author", {
 		templateUrl: "author.html"
+	}).when("/createAuthor", {
+		templateUrl: "newAuthor.html"
+	}).when("/editAuthor", {
+		templateUrl: "editAuthor.html"
+	}).when("/genre", {
+		templateUrl: "./genre/genre.html"
+	}).when("/createGenre", {
+		templateUrl: "./genre/newGenre.html"
+	}).when("/editGenre", {
+		templateUrl: "./genre/editGenre.html"
+	}).when("/borrower", {
+		templateUrl: "./borrower/borrower.html"
+	}).when("/createBorrower", {
+		templateUrl: "./borrower/newBorrower.html"
+	}).when("/editBorrower", {
+		templateUrl: "./borrower/editBorrower.html"
+	}).when("/publisher", {
+		templateUrl: "./publisher/publisher.html"
+	}).when("/createPublisher", {
+		templateUrl: "./publisher/newPublisher.html"
+	}).when("/editPublisher", {
+		templateUrl: "./publisher/editPublisher.html"
+	}).when("/branch", {
+		templateUrl: "./branch/branch.html"
+	}).when("/createBranch", {
+		templateUrl: "./branch/newBranch.html"
+	}).when("/editBranch", {
+		templateUrl: "./branch/editBranch.html"
+	}).when("/override", {
+		templateUrl: "./override/override.html"
+	}).when("/overrideRecords", {
+		templateUrl: "./override/loanRecords.html"
+	}).when("/lib", {
+		templateUrl: "./librarian.html"
+	}).when("/libAddCopies", {
+		templateUrl: "./librarian/addCopies.html"
+	}).when("/libEditBranch", {
+		templateUrl: "./librarian/editBranch.html"
+	}).when("/borrower", {
+		templateUrl: "./borrower.html"
 	})
 }])

@@ -1,9 +1,24 @@
 package com.gcit.lms.entity;
 
+import java.util.List;
+
 public class Genre {
 	
 	private Integer genreId;
 	private String genreName;
+	private List<Book> books;
+	/**
+	 * @return the books
+	 */
+	public List<Book> getBooks() {
+		return books;
+	}
+	/**
+	 * @param books the books to set
+	 */
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 	/**
 	 * @return the genreId
 	 */

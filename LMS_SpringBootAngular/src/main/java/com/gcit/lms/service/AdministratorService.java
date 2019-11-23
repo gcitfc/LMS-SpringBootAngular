@@ -74,6 +74,7 @@ public class AdministratorService {
 					return "Author updated sucessfully";
 				}else if(author.getAuthorId()!=null){
 					adao.deleteAuthor(author);
+					System.out.println("Author deleted sucessfully");
 					return "Author deleted sucessfully";
 				}else{
 					adao.saveAuthor(author);
@@ -208,6 +209,7 @@ public class AdministratorService {
 					return "Book updated sucessfully";
 				}else if(book.getBookId()!=null){
 					bdao.deleteBook(book);
+					System.out.println("Book deleted sucessfully");
 					return "Book deleted sucessfully";
 				}
 			}
@@ -237,12 +239,14 @@ public class AdministratorService {
 	@RequestMapping(value="/updateGenre", method=RequestMethod.POST, consumes="application/json")
 	public String updateGenre(@RequestBody Genre genre) throws SQLException{
 		try {
+			System.out.println(genre.getGenreName() + genre.getGenreId());
 			if(genre!=null){
 				if(genre.getGenreId()!=null && genre.getGenreName()!=null){
 					gdao.updateGenre(genre);
 					return "Genre updated sucessfully";
 				}else if(genre.getGenreId()!=null){
 					gdao.deleteGenre(genre);
+					System.out.println("Genre deleted sucessfully");
 					return "Genre deleted sucessfully";
 				}else{
 					gdao.saveGenre(genre);
@@ -265,6 +269,9 @@ public class AdministratorService {
 			}else{
 				genres = gdao.readAllGenre();
 			}
+			for(Genre g: genres){
+				g.setBooks(bdao.readBooksByGenre(g));
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -275,6 +282,7 @@ public class AdministratorService {
 	@RequestMapping(value="/updatePublisher", method=RequestMethod.POST, consumes="application/json")
 	public String updatePublisher(@RequestBody Publisher publisher) throws SQLException{
 		try {
+			//System.out.println(publisher.getPubName());
 			if(publisher!=null){
 				if(publisher.getPubId()==null && publisher.getPubName()!=null && publisher.getPubAddress() != null && publisher.getPubPhone() != null){
 					pdao.savePub(publisher);
@@ -337,11 +345,13 @@ public class AdministratorService {
 	public List<Branch> readBranches(@RequestParam String searchString) throws SQLException{
 		List<Branch> branches = new ArrayList<>();
 		try {
-			if(searchString!=null){
-				branches= brdao.readBranchByName(searchString);
-			}else{
-				branches = brdao.readAllBranches();
-			}
+			branches = brdao.readAllBranches();
+//			System.out.println(searchString);
+//			if(searchString!=null){
+//				branches= brdao.readBranchByName(searchString);
+//			}else{
+//				branches = brdao.readAllBranches();
+//			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

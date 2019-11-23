@@ -84,6 +84,19 @@ lmsApp.controller("bookController", function($scope, $http, $window) {
 				genres : genreArray,
 				publisher: newPublisher
 		}
+		//alert(authorArray)
+		
+		$http.post("http://localhost:8070/lms/admin/updateBook", book).success(function(data){})
+		$window.location = "#/book";
+	};
+	
+	$scope.deleteBook = function(){
+		var bookObj = JSON.parse($scope.bookTitle)
+		
+		var book = {
+				bookId : bookObj['bookId']
+		}
+		//alert(authorArray)
 		
 		$http.post("http://localhost:8070/lms/admin/updateBook", book).success(function(data){})
 		$window.location = "#/book";

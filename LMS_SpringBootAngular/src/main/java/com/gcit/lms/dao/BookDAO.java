@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import com.gcit.lms.entity.Author;
 import com.gcit.lms.entity.Book;
 import com.gcit.lms.entity.Borrower;
+import com.gcit.lms.entity.Genre;
 
 @Repository
 public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Book>>{
@@ -74,6 +75,10 @@ public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Bo
 	
 	public List<Book> readBooksByAuthor(Author author) throws ClassNotFoundException, SQLException {
 		return mySqlTemplate.query("SELECT b.bookId, title FROM tbl_book b INNER JOIN tbl_book_authors ba ON  b.bookId=ba.bookId INNER JOIN tbl_author a ON ba.authorId=a.authorId WHERE a.authorId=?", new Object[]{author.getAuthorId()}, this);
+	}
+	
+	public List<Book> readBooksByGenre(Genre genre) throws ClassNotFoundException, SQLException {
+		return mySqlTemplate.query("SELECT b.bookId, title FROM tbl_book b INNER JOIN tbl_book_genres bg ON  b.bookId=bg.bookId INNER JOIN tbl_genre g ON bg.genre_id=g.genre_id WHERE g.genre_id=?", new Object[]{genre.getGenreId()}, this);
 	}
 	
 	public List<Book> readBooksByBnB(Borrower b, Integer branchId) throws ClassNotFoundException, SQLException {

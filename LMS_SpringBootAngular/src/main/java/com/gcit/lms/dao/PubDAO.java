@@ -18,14 +18,8 @@ public class PubDAO extends BaseDAO<Publisher> implements ResultSetExtractor<Lis
 	public void savePub(Publisher pub) throws ClassNotFoundException, SQLException {
 		mySqlTemplate.update("INSERT INTO tbl_publisher (publisherName, publisherAddress, publisherPhone) values (?,?,?)", new Object[] { pub.getPubName(), pub.getPubAddress(), pub.getPubPhone() });
 	}
-	
+
 	public void updatePub(Publisher pub) throws SQLException, ClassNotFoundException {
-		mySqlTemplate.update("UPDATE tbl_publisher SET publisherName = ? where publisherId = ?",
-				new Object[] { pub.getPubName(), pub.getPubId() });
-
-	}
-
-	public void updatePubName(Publisher pub) throws SQLException, ClassNotFoundException {
 		mySqlTemplate.update("UPDATE tbl_publisher SET publisherName = ?, publisherAddress = ?, publisherPhone = ? where publisherId = ?",
 				new Object[] { pub.getPubName(), pub.getPubAddress(), pub.getPubPhone(), pub.getPubId() });
 

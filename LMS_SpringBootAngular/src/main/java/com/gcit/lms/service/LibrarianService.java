@@ -1,12 +1,15 @@
 package com.gcit.lms.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gcit.lms.dao.AuthorDAO;
@@ -17,6 +20,7 @@ import com.gcit.lms.dao.BorrowerDAO;
 import com.gcit.lms.dao.BranchDAO;
 import com.gcit.lms.dao.GenreDAO;
 import com.gcit.lms.dao.PubDAO;
+import com.gcit.lms.entity.Book;
 import com.gcit.lms.entity.BookCopies;
 import com.gcit.lms.entity.Branch;
 
@@ -92,6 +96,19 @@ public class LibrarianService {
 			e.printStackTrace();
 			return "Unable to update Num of Copies, try again";
 		}
+	}
+	
+	@RequestMapping(value="/readBookCopies", method=RequestMethod.GET, produces="application/json")
+	public List<BookCopies> readBookCopies(@RequestParam Integer branchId) throws SQLException{
+		List<BookCopies> copies = new ArrayList<>();
+		try {
+			Branch branch = new Branch();
+			branch.setBranchId(branchId);
+			copies = bcdao.readCopiesByBranch(branch);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return copies;
 	}
 
 }

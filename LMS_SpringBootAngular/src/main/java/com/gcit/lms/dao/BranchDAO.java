@@ -55,7 +55,7 @@ public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<Lis
 	}
 
 	public void deleteBranch(Branch branch) throws ClassNotFoundException, SQLException {
-		mySqlTemplate.query("delete from tbl_library_branch where branchId = ?", new Object[] { branch.getBranchId() }, this);
+		mySqlTemplate.update("delete from tbl_library_branch where branchId = ?", new Object[] { branch.getBranchId() });
 	}
 
 	public List<Branch> readAllBranches() throws ClassNotFoundException, SQLException {
@@ -63,6 +63,7 @@ public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<Lis
 	}
 	
 	public List<Branch> readBranchByName(String branchName) throws ClassNotFoundException, SQLException {
+		branchName = "%"+branchName+"%";
 		return mySqlTemplate.query("SELECT * FROM tbl_library_branch where branchName=?", new Object[]{branchName}, this);
 	}
 

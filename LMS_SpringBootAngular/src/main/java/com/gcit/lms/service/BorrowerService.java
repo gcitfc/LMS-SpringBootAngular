@@ -1,7 +1,7 @@
 package com.gcit.lms.service;
 
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,11 @@ import com.gcit.lms.dao.BorrowerDAO;
 import com.gcit.lms.dao.BranchDAO;
 import com.gcit.lms.dao.GenreDAO;
 import com.gcit.lms.dao.PubDAO;
+import com.gcit.lms.entity.Book;
 import com.gcit.lms.entity.BookCopies;
 import com.gcit.lms.entity.BookLoans;
+import com.gcit.lms.entity.Borrower;
+import com.gcit.lms.entity.Branch;
 
 @RestController
 @RequestMapping(value="/borrower")
@@ -96,6 +99,21 @@ public class BorrowerService {
 			e.printStackTrace();
 			return "Unable to return book, try again";
 		}
+	}
+	
+	@RequestMapping(value="/readBooksByBB", method=RequestMethod.GET, produces="application/json")
+	public List<BookLoans> readBooksByBB(@RequestParam Integer cardNo, Integer branchId) throws SQLException{
+		List<BookLoans> bl = new ArrayList<>();
+		Borrower borr = new Borrower();
+		Branch br = new Branch();
+		borr.setCardNo(cardNo);
+		br.setBranchId(branchId);
+		try {
+			bl = bldao.readLoansByBB(borr, br);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return bl;
 	}
 	
 }
