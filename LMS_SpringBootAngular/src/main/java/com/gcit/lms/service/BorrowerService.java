@@ -116,4 +116,17 @@ public class BorrowerService {
 		return bl;
 	}
 	
+	@RequestMapping(value="/readBookCopies", method=RequestMethod.GET, produces="application/json")
+	public List<BookCopies> readBookCopies(@RequestParam Integer branchId) throws SQLException{
+		List<BookCopies> copies = new ArrayList<>();
+		try {
+			Branch branch = new Branch();
+			branch.setBranchId(branchId);
+			copies = bcdao.readCopiesByBranch(branch);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return copies;
+	}
+	
 }
