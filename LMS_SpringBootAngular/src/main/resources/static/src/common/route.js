@@ -23,7 +23,7 @@ lmsApp.config(["$routeProvider", function($routeProvider){
 		templateUrl: "./genre/newGenre.html"
 	}).when("/editGenre", {
 		templateUrl: "./genre/editGenre.html"
-	}).when("/borrower", {
+	}).when("/borrowerList", {
 		templateUrl: "./borrower/borrower.html"
 	}).when("/createBorrower", {
 		templateUrl: "./borrower/newBorrower.html"

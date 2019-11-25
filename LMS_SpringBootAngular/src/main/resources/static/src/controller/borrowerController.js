@@ -5,7 +5,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 	})
 	
 	$scope.cancelCreate = function(){
-		$window.location = "#/borrower";
+		$window.location = "#/borrowerList";
 	};
 	
 	$scope.createBorrower = function(){
@@ -24,7 +24,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){
 			
 		})
-		$window.location = "#/borrower";
+		$window.location = "#/borrowerList";
 	};
 	
 	$scope.updateBorrower = function(){
@@ -52,7 +52,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){
 			
 		})
-		$window.location = "#/borrower";
+		$window.location = "#/borrowerList";
 	};
 	
 	$scope.deleteBorrower = function(){
@@ -65,7 +65,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 				cardNo : obj.cardNo
 		}
 		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){})
-		$window.location = "#/borrower";
+		$window.location = "#/borrowerList";
 	};
 	
 	
