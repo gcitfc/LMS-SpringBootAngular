@@ -32,13 +32,17 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Book Title</th>
-				<th scope="col"></th>
+				<th scope="col" ng-show="returning">Date Out</th>
+				<th scope="col" ng-show="returning">Due Date</th>
+				<th scope="col"></th>		
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="bc in copies | orderBy : '-noOfCopies'">
 				<td scope="col">{{$index+1}}</td>
 				<td scope="col">{{bc.book.title}}</td>
+				<td scope="col">{{bc.dateOut}}</td>
+				<td scope="col">{{bc.dueDate}}</td>
 				<td scope="col"><button type="submit" class="btn btn-primary" ng-click=userReturn(bc)>Return</button></td>
 			</tr>
 			<tr ng-repeat="bc in checkOutCopies | orderBy : '-noOfCopies'">

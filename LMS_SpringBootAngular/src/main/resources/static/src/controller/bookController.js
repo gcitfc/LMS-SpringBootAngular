@@ -1,18 +1,18 @@
 lmsApp.controller("bookController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/admin/readAllBookDetail?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readBooks?searchString=").success(function(data) {
 		$scope.books = data;
 		$scope.numOfBooks = data.length;
 	})
 	
-	$http.get("http://localhost:8070/lms/admin/readBasicAuthorsByName?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readAuthors?searchString=").success(function(data) {
 		$scope.authors = data;
 	})
 	
-	$http.get("http://localhost:8070/lms/admin/readPublishers?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readPublishers?searchString=").success(function(data) {
 		$scope.publishers = data;
 	})
 	
-	$http.get("http://localhost:8070/lms/admin/readGenres?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readGenres?searchString=").success(function(data) {
 		$scope.genres = data;
 	})
 	
@@ -38,7 +38,7 @@ lmsApp.controller("bookController", function($scope, $http, $window) {
 				publisher: JSON.parse($scope.bookPublisher)
 		}
 		
-		$http.post("http://localhost:8070/lms/admin/saveBook", book).success(function(data){
+		$http.post("http://localhost:8070/lms/saveBook", book).success(function(data){
 			
 		})
 		$window.location = "#/book";
@@ -86,7 +86,7 @@ lmsApp.controller("bookController", function($scope, $http, $window) {
 		}
 		//alert(authorArray)
 		
-		$http.post("http://localhost:8070/lms/admin/updateBook", book).success(function(data){})
+		$http.post("http://localhost:8070/lms/updateBook", book).success(function(data){})
 		$window.location = "#/book";
 	};
 	
@@ -98,7 +98,7 @@ lmsApp.controller("bookController", function($scope, $http, $window) {
 		}
 		//alert(authorArray)
 		
-		$http.post("http://localhost:8070/lms/admin/updateBook", book).success(function(data){})
+		$http.post("http://localhost:8070/lms/updateBook", book).success(function(data){})
 		$window.location = "#/book";
 	};
 	

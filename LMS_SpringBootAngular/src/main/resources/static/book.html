@@ -1,13 +1,12 @@
 <div class="jumbotron">
     <div class="container">
-      <h2>Book Database</h2>
+      <h2>Books</h2>
     </div>
 </div>
 
 <div class="container" ng-controller="bookController">
 	<h2>{{numOfBooks}} Books found in LMS</h2>
-	<a href="#/newBook"><button type="button" class="btn btn-success">+ New Book</button></a>
-	<a href="#/editBook"><button type="button" class="btn btn-warning">Edit / Delete Book</button></a>
+	
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -28,4 +27,6 @@
 			</tr>
 		</tbody>
 	</table>
+	<a href="#/newBook"><button type="button" class="btn btn-success">+ New Book</button></a>
+	<a href="#/editBook"><button type="button" class="btn btn-warning">Edit / Delete Book</button></a>
 </div>

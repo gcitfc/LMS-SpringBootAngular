@@ -1,5 +1,5 @@
 lmsApp.controller("borrowerController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/admin/readBorrowers?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readBorrowers?searchString=").success(function(data) {
 		$scope.borrowers = data;
 		$scope.numOfBorrowers = data.length;
 	})
@@ -21,7 +21,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 				books : null
 		}
 		
-		$http.post("http://localhost:8070/lms/admin/updateBorrower", JSON.stringify(borrower)).success(function(data){
+		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){
 			
 		})
 		$window.location = "#/borrower";
@@ -49,7 +49,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 				address : newAddress,
 				phone : newPhone
 		}
-		$http.post("http://localhost:8070/lms/admin/updateBorrower", JSON.stringify(borrower)).success(function(data){
+		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){
 			
 		})
 		$window.location = "#/borrower";
@@ -64,7 +64,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 		var borrower = {
 				cardNo : obj.cardNo
 		}
-		$http.post("http://localhost:8070/lms/admin/updateBorrower", JSON.stringify(borrower)).success(function(data){})
+		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){})
 		$window.location = "#/borrower";
 	};
 	

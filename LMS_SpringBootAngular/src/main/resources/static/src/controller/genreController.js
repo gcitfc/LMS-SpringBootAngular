@@ -1,5 +1,5 @@
 lmsApp.controller("genreController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/admin/readGenres?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readGenres?searchString=").success(function(data) {
 		$scope.genres = data;
 		$scope.numOfGenres = data.length;
 	})
@@ -13,7 +13,7 @@ lmsApp.controller("genreController", function($scope, $http, $window) {
 				genreName : $scope.genreName
 		}
 		
-		$http.post("http://localhost:8070/lms/admin/updateGenre", JSON.stringify(genre)).success(function(data){
+		$http.post("http://localhost:8070/lms/updateGenre", JSON.stringify(genre)).success(function(data){
 			
 		})
 		$window.location = "#/genre";
@@ -28,7 +28,7 @@ lmsApp.controller("genreController", function($scope, $http, $window) {
 				genreId : genreObj.genreId,
 				genreName : newName
 		}
-		$http.post("http://localhost:8070/lms/admin/updateGenre", JSON.stringify(genre)).success(function(data){
+		$http.post("http://localhost:8070/lms/updateGenre", JSON.stringify(genre)).success(function(data){
 			
 		})
 		$window.location = "#/genre";
@@ -41,7 +41,7 @@ lmsApp.controller("genreController", function($scope, $http, $window) {
 				genreName : null,
 				books : null
 		}
-		$http.post("http://localhost:8070/lms/admin/updateGenre", JSON.stringify(genre)).success(function(data){})
+		$http.post("http://localhost:8070/lms/updateGenre", JSON.stringify(genre)).success(function(data){})
 		$window.location = "#/genre";
 	};
 	

@@ -1,5 +1,5 @@
 lmsApp.controller("publisherController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/admin/readPublishers?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readPublishers?searchString=").success(function(data) {
 		$scope.publishers = data;
 		$scope.numOfPublishers = data.length;
 	})
@@ -21,7 +21,7 @@ lmsApp.controller("publisherController", function($scope, $http, $window) {
 				pubPhone : $scope.phone
 		}
 		console.log(publisher)
-		$http.post("http://localhost:8070/lms/admin/updatePublisher", JSON.stringify(publisher)).success(function(data){})
+		$http.post("http://localhost:8070/lms/updatePublisher", JSON.stringify(publisher)).success(function(data){})
 		$window.location = "#/publisher";
 	};
 	
@@ -48,7 +48,7 @@ lmsApp.controller("publisherController", function($scope, $http, $window) {
 				pubPhone : newPhone
 		}
 		console.log(publisher)
-		$http.post("http://localhost:8070/lms/admin/updatePublisher", JSON.stringify(publisher)).success(function(data){
+		$http.post("http://localhost:8070/lms/updatePublisher", JSON.stringify(publisher)).success(function(data){
 			
 		})
 		$window.location = "#/publisher";
@@ -63,7 +63,7 @@ lmsApp.controller("publisherController", function($scope, $http, $window) {
 		var publisher = {
 				pubId : obj.pubId
 		}
-		$http.post("http://localhost:8070/lms/admin/updatePublisher", JSON.stringify(publisher)).success(function(data){})
+		$http.post("http://localhost:8070/lms/updatePublisher", JSON.stringify(publisher)).success(function(data){})
 		$window.location = "#/publisher";
 	};
 	

@@ -236,10 +236,10 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/updateGenre", method=RequestMethod.POST, consumes="application/json")
+	@RequestMapping(value="/updateGenre", method=RequestMethod.POST, consumes= {"application/json", "application/xml"})
 	public String updateGenre(@RequestBody Genre genre) throws SQLException{
 		try {
-			System.out.println(genre.getGenreName() + genre.getGenreId());
+			//System.out.println(genre.getGenreName() + genre.getGenreId());
 			if(genre!=null){
 				if(genre.getGenreId()!=null && genre.getGenreName()!=null){
 					gdao.updateGenre(genre);
@@ -260,7 +260,7 @@ public class AdministratorService {
 		return null;
 	}
 	
-	@RequestMapping(value="/readGenres", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="/readGenres", method=RequestMethod.GET, produces= "application/json")
 	public List<Genre> readGenres(@RequestParam String searchString) throws SQLException{
 		List<Genre> genres = new ArrayList<>();
 		try {

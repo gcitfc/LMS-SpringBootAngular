@@ -1,11 +1,11 @@
 lmsApp.controller("branchController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/admin/readBranches?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readBranches?searchString=").success(function(data) {
 		$scope.branches = data;
 		$scope.numOfBranches = data.length;
 	})
 	
 	$scope.cancelCreate = function(){
-		$window.location = "#/publisher";
+		$window.location = "#/branch";
 	};
 	
 	$scope.createBranch = function(){
@@ -20,7 +20,7 @@ lmsApp.controller("branchController", function($scope, $http, $window) {
 				address : $scope.address
 		}
 		console.log(branch)
-		$http.post("http://localhost:8070/lms/admin/updateBranch", JSON.stringify(branch)).success(function(data){})
+		$http.post("http://localhost:8070/lms/updateBranch", JSON.stringify(branch)).success(function(data){})
 		$window.location = "#/branch";
 	};
 	
@@ -43,7 +43,7 @@ lmsApp.controller("branchController", function($scope, $http, $window) {
 				address : newAddress
 		}
 		console.log(branch)
-		$http.post("http://localhost:8070/lms/admin/updateBranch", JSON.stringify(branch)).success(function(data){
+		$http.post("http://localhost:8070/lms/updateBranch", JSON.stringify(branch)).success(function(data){
 			
 		})
 		$window.location = "#/branch";
@@ -58,10 +58,8 @@ lmsApp.controller("branchController", function($scope, $http, $window) {
 		var branch = {
 				branchId : obj.branchId
 		}
-		$http.post("http://localhost:8070/lms/admin/updateBranch", JSON.stringify(branch)).success(function(data){})
+		$http.post("http://localhost:8070/lms/updateBranch", JSON.stringify(branch)).success(function(data){})
 		$window.location = "#/branch";
 	};
-	
-	
 	
 })

@@ -2,12 +2,12 @@ lmsApp.controller("bookLoanController", function($scope, $http, $window) {
 	
 	var record
 	
-	$http.get("http://localhost:8070/lms/admin/readBorrowers?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readBorrowers?searchString=").success(function(data) {
 		$scope.borrowers = data;
 		$scope.numOfBorrowers = data.length;
 	})
 	
-	$http.get("http://localhost:8070/lms/admin/readBranches?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readBranches?searchString=").success(function(data) {
 		$scope.branches = data;
 		$scope.numOfBranches = data.length;
 	})
@@ -35,7 +35,7 @@ lmsApp.controller("bookLoanController", function($scope, $http, $window) {
 			}
 		}
 		console.log(loan)
-		$http.get("http://localhost:8070/lms/admin/getLoansByBnB", 
+		$http.get("http://localhost:8070/lms/getLoansByBnB", 
 				{ params: {
 					    	cardNo : cardNo,
 					    	branchId : branchId
@@ -58,7 +58,7 @@ lmsApp.controller("bookLoanController", function($scope, $http, $window) {
 		var loan = window.record
 		loan.dueDate = newDue
 		console.log(loan)
-		$http.post("http://localhost:8070/lms/admin/overrideDue", loan).success(function(data){})
+		$http.post("http://localhost:8070/lms/overrideDue", loan).success(function(data){})
 	};
 	
 })

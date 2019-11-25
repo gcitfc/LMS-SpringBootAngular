@@ -4,10 +4,12 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 		$scope.numOfBranches = data.length;
 	})
 	
-	$http.get("http://localhost:8070/lms/admin/readBorrowers?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readBorrowers?searchString=").success(function(data) {
 		$scope.borrowers = data;
 		$scope.numOfBorrowers = data.length;
 	})
+	
+	$scope.returning = false
 	
 	$scope.validCardNo = function(cardNo) {
 		var borrowers = $scope.borrowers
@@ -29,9 +31,9 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 			alert("Invalid Card Number")
 			return
 		}
-		var cardNo = $scope.cardNo
-		
-		$http.get("http://localhost:8070/lms/borrower/readBooksByBB", 
+		$scope.returning = true
+		var cardNo = $scope.cardNo	
+		$http.get("http://localhost:8070/lms/readBooksByBB", 
 				{ params: {
 							cardNo : cardNo,
 					    	branchId : branchId
@@ -39,10 +41,8 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 				}).success(function(data){
 					$scope.checkOutCopies = null;
 					$scope.copies = data;
-					//$scope.numOfBooks = data.length;
 					console.log(data)
 			});
-		
 	};
 	
 	$scope.checkOutBook = function() {
@@ -50,19 +50,19 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 			alert("Invalid Card Number")
 			return
 		}
+		$scope.returning = false
 		var branchObj = JSON.parse($scope.thisBranch)
 		var branchId = branchObj.branchId
 		var cardNo = $scope.cardNo
-		$http.get("http://localhost:8070/lms/borrower/readBookCopies", 
+		$http.get("http://localhost:8070/lms/readBookCopies", 
 				{ params: {
 					    	branchId : branchId
 					}
 				}).success(function(data){
 					$scope.copies = null;
 					$scope.checkOutCopies = data;
-					//$scope.numOfCheckOutBooks = data.length;
 					console.log(data)
-			});
+			});		
 	};
 	
 	$scope.userReturn = function(bc) {
@@ -76,13 +76,33 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 				branch : branch,
 				borrower : borrower
 		}
-		$http.post("http://localhost:8070/lms/borrower/returnBook", loan).success(function(data){})
+		$http.post("http://localhost:8070/lms/returnBook", loan).success(function(data){})
 		alert("Book Returned Sucessfully")
 	};
 	
 	$scope.userCheckOut = function(bc) {
 		var branch = bc.branch
 		var book = bc.book
+		
+		$http.get("http://localhost:8070/lms/readBooksByBB", 
+				{ params: {
+							cardNo : cardNo,
+					    	branchId : branch.branchId
+					}
+				}).success(function(data){
+					$scope.tmpList = data
+			});
+		
+//		var tmp = $scope.tmpList
+//		console.log(tmp)
+//		
+//		for(var index = 0; index < tmp.length; index++){
+//			if(tmp[index].book.bookId == book.bookId) {
+//				alert("You have already checked out one copy of this book")
+//				return
+//			}
+//		}
+		
 		var borrower = {
 				cardNo : $scope.cardNo
 		}
@@ -91,7 +111,9 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 				branch : branch,
 				borrower : borrower
 		}
-		$http.post("http://localhost:8070/lms/borrower/checkOutBook", loan).success(function(data){})
+		$http.post("http://localhost:8070/lms/checkOutBook", loan).success(function(data){})
 		alert("Book Checked Out Sucessfully")
 	};
+	
+	
 })

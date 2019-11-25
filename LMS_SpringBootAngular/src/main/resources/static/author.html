@@ -1,14 +1,13 @@
 <div class="jumbotron">
     <div class="container">
-      <h2>Author Database</h2>
+      <h2>Authors</h2>
     </div>
 </div>
 
 <div class="container" ng-controller="authorController">
 	<h2>{{numOfAuthors}} Authors found in LMS</h2>
-	<a href="#/createAuthor"><button type="button" class="btn btn-success">+ New Author</button></a>
-	<a href="#/editAuthor"><button type="button" class="btn btn-warning">Edit / Delete Author</button></a>
-	<table class="table table-hover">
+	
+	<table id="authorTable" class="table table-hover">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
@@ -24,4 +23,7 @@
 			</tr>
 		</tbody>
 	</table>
+
+	<a href="#/createAuthor"><button type="button" class="btn btn-success">+ New Author</button></a>
+	<a href="#/editAuthor"><button type="button" class="btn btn-warning">Edit / Delete Author</button></a>
 </div>
