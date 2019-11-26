@@ -1,7 +1,11 @@
-lmsApp.controller("authorController", function($scope, $http, $window) {
+lmsApp.controller("authorController", function($scope, $http, $window, Pagination) {
 	$http.get("http://localhost:8070/lms/readAuthorsWithBooks?searchString=").success(function(data) {
 		$scope.authors = data;
 		$scope.numOfAuthors = data.length;
+		
+		$scope.pagination = Pagination.getNew(10);
+		$scope.pagination.numPages = Math.ceil($scope.authors.length
+				/ $scope.pagination.perPage);
 	})
 	
 	$scope.createAuthor = function(){

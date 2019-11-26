@@ -1,1 +1,1 @@
-var lmsApp = angular.module("lmsApp", ["ngRoute"]);
+var lmsApp = angular.module("lmsApp", ["ngRoute", "simplePagination"]);

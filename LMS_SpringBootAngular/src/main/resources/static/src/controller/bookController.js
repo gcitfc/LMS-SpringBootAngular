@@ -1,18 +1,22 @@
-lmsApp.controller("bookController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/readBooks?searchString=").success(function(data) {
+lmsApp.controller("bookController", function($scope, $http, $window, lmsConstants, Pagination) {
+	$http.get(lmsConstants.URL_PREFIX + "/readBooks?searchString=").success(function(data) {
 		$scope.books = data;
 		$scope.numOfBooks = data.length;
+		
+		$scope.pagination = Pagination.getNew(10);
+		$scope.pagination.numPages = Math.ceil($scope.books.length
+				/ $scope.pagination.perPage);
 	})
 	
-	$http.get("http://localhost:8070/lms/readAuthors?searchString=").success(function(data) {
+	$http.get(lmsConstants.URL_PREFIX+"/readAuthors?searchString=").success(function(data) {
 		$scope.authors = data;
 	})
 	
-	$http.get("http://localhost:8070/lms/readPublishers?searchString=").success(function(data) {
+	$http.get(lmsConstants.URL_PREFIX+"/readPublishers?searchString=").success(function(data) {
 		$scope.publishers = data;
 	})
 	
-	$http.get("http://localhost:8070/lms/readGenres?searchString=").success(function(data) {
+	$http.get(lmsConstants.URL_PREFIX+"/readGenres?searchString=").success(function(data) {
 		$scope.genres = data;
 	})
 	
@@ -86,7 +90,7 @@ lmsApp.controller("bookController", function($scope, $http, $window) {
 		}
 		//alert(authorArray)
 		
-		$http.post("http://localhost:8070/lms/updateBook", book).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX+"s/updateBook", book).success(function(data){})
 		$window.location = "#/book";
 	};
 	
@@ -98,7 +102,7 @@ lmsApp.controller("bookController", function($scope, $http, $window) {
 		}
 		//alert(authorArray)
 		
-		$http.post("http://localhost:8070/lms/updateBook", book).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX+"/updateBook", book).success(function(data){})
 		$window.location = "#/book";
 	};
 	

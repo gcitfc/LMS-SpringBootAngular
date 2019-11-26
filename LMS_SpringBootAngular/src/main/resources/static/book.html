@@ -18,7 +18,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="b in books | orderBy : '+title'">
+			<tr ng-repeat="b in books | orderBy : '+title' | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
 				<td scope="col">{{$index+1}}</td>
 				<td scope="col">{{b.title}}</td>
 				<td scope="col"><span ng-repeat="a in b.authors | orderBy : '+authorName'">{{a.authorName}}, </span></td>
@@ -27,6 +27,18 @@
 			</tr>
 		</tbody>
 	</table>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href=""
+				ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li class="page-item"
+				ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a class="page-link"
+				href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li class="page-item"><a class="page-link" href=""
+				ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
 	<a href="#/newBook"><button type="button" class="btn btn-success">+ New Book</button></a>
 	<a href="#/editBook"><button type="button" class="btn btn-warning">Edit / Delete Book</button></a>
 </div>

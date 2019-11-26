@@ -1,7 +1,11 @@
-lmsApp.controller("genreController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/readGenres?searchString=").success(function(data) {
+lmsApp.controller("genreController", function($scope, $http, $window, lmsConstants, Pagination) {
+	$http.get(lmsConstants.URL_PREFIX + "/readGenres?searchString=").success(function(data) {
 		$scope.genres = data;
 		$scope.numOfGenres = data.length;
+		
+		$scope.pagination = Pagination.getNew(10);
+		$scope.pagination.numPages = Math.ceil($scope.genres.length
+				/ $scope.pagination.perPage);
 	})
 	
 	$scope.cancelCreate = function(){
@@ -13,7 +17,7 @@ lmsApp.controller("genreController", function($scope, $http, $window) {
 				genreName : $scope.genreName
 		}
 		
-		$http.post("http://localhost:8070/lms/updateGenre", JSON.stringify(genre)).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX + "/updateGenre", JSON.stringify(genre)).success(function(data){
 			
 		})
 		$window.location = "#/genre";
@@ -28,7 +32,7 @@ lmsApp.controller("genreController", function($scope, $http, $window) {
 				genreId : genreObj.genreId,
 				genreName : newName
 		}
-		$http.post("http://localhost:8070/lms/updateGenre", JSON.stringify(genre)).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX + "/updateGenre", JSON.stringify(genre)).success(function(data){
 			
 		})
 		$window.location = "#/genre";
@@ -41,7 +45,7 @@ lmsApp.controller("genreController", function($scope, $http, $window) {
 				genreName : null,
 				books : null
 		}
-		$http.post("http://localhost:8070/lms/updateGenre", JSON.stringify(genre)).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX + "/updateGenre", JSON.stringify(genre)).success(function(data){})
 		$window.location = "#/genre";
 	};
 	

@@ -1,7 +1,11 @@
-lmsApp.controller("borrowerController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/readBorrowers?searchString=").success(function(data) {
+lmsApp.controller("borrowerController", function($scope, $http, $window, lmsConstants, Pagination) {
+	$http.get(lmsConstants.URL_PREFIX + "/readBorrowers?searchString=").success(function(data) {
 		$scope.borrowers = data;
 		$scope.numOfBorrowers = data.length;
+		
+		$scope.pagination = Pagination.getNew(10);
+		$scope.pagination.numPages = Math.ceil($scope.borrowers.length
+				/ $scope.pagination.perPage);
 	})
 	
 	$scope.cancelCreate = function(){
@@ -21,7 +25,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 				books : null
 		}
 		
-		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX + "/updateBorrower", JSON.stringify(borrower)).success(function(data){
 			
 		})
 		$window.location = "#/borrowerList";
@@ -49,7 +53,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 				address : newAddress,
 				phone : newPhone
 		}
-		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX + "/updateBorrower", JSON.stringify(borrower)).success(function(data){
 			
 		})
 		$window.location = "#/borrowerList";
@@ -64,7 +68,7 @@ lmsApp.controller("borrowerController", function($scope, $http, $window) {
 		var borrower = {
 				cardNo : obj.cardNo
 		}
-		$http.post("http://localhost:8070/lms/updateBorrower", JSON.stringify(borrower)).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX + "/updateBorrower", JSON.stringify(borrower)).success(function(data){})
 		$window.location = "#/borrowerList";
 	};
 	

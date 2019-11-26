@@ -97,34 +97,5 @@ public class LibrarianService {
 			return "Unable to update Num of Copies, try again";
 		}
 	}
-	
-	@RequestMapping(value="/readBookCopies", method=RequestMethod.GET, produces="application/json")
-	public List<BookCopies> readBookCopies(@RequestParam Integer branchId) throws SQLException{
-		List<BookCopies> copies = new ArrayList<>();
-		List<BookCopies> ret = new ArrayList<>();
-		List<Book> books = new ArrayList<>();
-		try {
-			Branch branch = new Branch();
-			branch.setBranchId(branchId);
-			copies = bcdao.readCopiesByBranch(branch);
-			books = bdao.readAllBooks();
-			for(Book b : books) {
-				BookCopies bc = new BookCopies();
-				bc.setBook(b);
-				bc.setBranch(branch);
-				bc.setNoOfCopies(0);
-				ret.add(bc);
-			}
-			for(BookCopies bc : copies) {
-				for(BookCopies b : ret) {
-					if(bc.getBook().getBookId() == b.getBook().getBookId())
-						b.setNoOfCopies(bc.getNoOfCopies());
-				}
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		return ret;
-	}
 
 }

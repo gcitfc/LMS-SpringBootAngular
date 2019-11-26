@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gcit.lms.dao.AuthorDAO;
 import com.gcit.lms.dao.BookAuthorDAO;
+import com.gcit.lms.dao.BookCopiesDAO;
 import com.gcit.lms.dao.BookDAO;
 import com.gcit.lms.dao.BookGenreDAO;
 import com.gcit.lms.dao.BookLoansDAO;
@@ -25,6 +26,7 @@ import com.gcit.lms.dao.GenreDAO;
 import com.gcit.lms.dao.PubDAO;
 import com.gcit.lms.entity.Author;
 import com.gcit.lms.entity.Book;
+import com.gcit.lms.entity.BookCopies;
 import com.gcit.lms.entity.BookLoans;
 import com.gcit.lms.entity.Borrower;
 import com.gcit.lms.entity.Branch;
@@ -64,8 +66,11 @@ public class AdministratorService {
 	@Autowired
 	BookGenreDAO bgdao;
 	
+	@Autowired
+	BookCopiesDAO bcdao;
+	
 	@Transactional
-	@RequestMapping(value="/updateAuthor", method=RequestMethod.POST, consumes="application/json")
+	//@RequestMapping(value="/updateAuthor", method=RequestMethod.POST, consumes="application/json")
 	public String updateAuthor(@RequestBody Author author) throws SQLException{
 		try {
 			if(author!=null){
@@ -89,7 +94,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/saveBook", method=RequestMethod.POST, consumes="application/json")
+	//@RequestMapping(value="/saveBook", method=RequestMethod.POST, consumes="application/json")
 	public void saveBook(@RequestBody Book book) throws SQLException, ClassNotFoundException{
 		if(book != null){
 			Integer bookId = bdao.saveBookWithID(book);
@@ -104,7 +109,7 @@ public class AdministratorService {
 	}
 	
 	
-	@RequestMapping(value="/readAllBookDetail", method=RequestMethod.GET, produces="application/json")
+	//@RequestMapping(value="/readAllBookDetail", method=RequestMethod.GET, produces="application/json")
 	public List<Book> readBooksDetail(@RequestParam String searchString) throws SQLException{
 		List<Book> books = new ArrayList<>();
 		try {
@@ -118,7 +123,7 @@ public class AdministratorService {
 		return books;
 	}
 	
-	@RequestMapping(value="/readAuthors/{searchString}", method=RequestMethod.GET, produces="application/json")
+	//@RequestMapping(value="/readAuthors/{searchString}", method=RequestMethod.GET, produces="application/json")
 	public List<Author> readAuthors(@PathVariable String searchString) throws SQLException{
 		List<Author> authors = new ArrayList<>();
 		try {
@@ -136,7 +141,7 @@ public class AdministratorService {
 		return authors;
 	}
 	
-	@RequestMapping(value="/readAuthorsByName", method=RequestMethod.GET, produces="application/json")
+	//@RequestMapping(value="/readAuthorsByName", method=RequestMethod.GET, produces="application/json")
 	public List<Author> readAuthorsByName(@RequestParam String searchString) throws SQLException{
 		List<Author> authors = new ArrayList<>();
 		try {
@@ -170,7 +175,7 @@ public class AdministratorService {
 	}
 	
 	
-	@RequestMapping(value="/getLoansByBnB", method=RequestMethod.GET, produces="application/json")
+	//@RequestMapping(value="/getLoansByBnB", method=RequestMethod.GET, produces="application/json")
 	public List<BookLoans> getLoansByBnB(@RequestParam Integer cardNo, Integer branchId) throws SQLException{
 		Borrower b = new Borrower();
 		b.setCardNo(cardNo);
@@ -185,7 +190,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/updateBook", method=RequestMethod.POST, consumes="application/json")
+	//@RequestMapping(value="/updateBook", method=RequestMethod.POST, consumes="application/json")
 	public String updateBook(@RequestBody Book book) throws SQLException{
 		try {
 			if(book!=null){
@@ -220,7 +225,7 @@ public class AdministratorService {
 		return null;
 	}
 	
-	@RequestMapping(value="/readBooks", method=RequestMethod.GET, produces="application/json")
+	//@RequestMapping(value="/readBooks", method=RequestMethod.GET, produces="application/json")
 	public List<Book> readBooks(@RequestParam String searchString) throws SQLException{
 		List<Book> books = new ArrayList<>();
 		try {
@@ -236,7 +241,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/updateGenre", method=RequestMethod.POST, consumes= {"application/json", "application/xml"})
+	//@RequestMapping(value="/updateGenre", method=RequestMethod.POST, consumes= {"application/json", "application/xml"})
 	public String updateGenre(@RequestBody Genre genre) throws SQLException{
 		try {
 			//System.out.println(genre.getGenreName() + genre.getGenreId());
@@ -260,7 +265,7 @@ public class AdministratorService {
 		return null;
 	}
 	
-	@RequestMapping(value="/readGenres", method=RequestMethod.GET, produces= "application/json")
+	//@RequestMapping(value="/readGenres", method=RequestMethod.GET, produces= "application/json")
 	public List<Genre> readGenres(@RequestParam String searchString) throws SQLException{
 		List<Genre> genres = new ArrayList<>();
 		try {
@@ -279,7 +284,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/updatePublisher", method=RequestMethod.POST, consumes="application/json")
+	//@RequestMapping(value="/updatePublisher", method=RequestMethod.POST, consumes="application/json")
 	public String updatePublisher(@RequestBody Publisher publisher) throws SQLException{
 		try {
 			//System.out.println(publisher.getPubName());
@@ -303,7 +308,7 @@ public class AdministratorService {
 	}
 	
 	
-	@RequestMapping(value="/readPublishers", method=RequestMethod.GET, produces="application/json")
+	//@RequestMapping(value="/readPublishers", method=RequestMethod.GET, produces="application/json")
 	public List<Publisher> readPublishers(@RequestParam String searchString) throws SQLException{
 		List<Publisher> pubs = new ArrayList<>();
 		try {
@@ -319,7 +324,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/updateBranch", method=RequestMethod.POST, consumes="application/json")
+	//@RequestMapping(value="/updateBranch", method=RequestMethod.POST, consumes="application/json")
 	public String updateBranch(@RequestBody Branch branch) throws SQLException{
 		try {
 			if(branch!=null){
@@ -341,7 +346,7 @@ public class AdministratorService {
 		return null;
 	}
 	
-	@RequestMapping(value="/readBranches", method=RequestMethod.GET, produces="application/json")
+	//@RequestMapping(value="/readBranches", method=RequestMethod.GET, produces="application/json")
 	public List<Branch> readBranches(@RequestParam String searchString) throws SQLException{
 		List<Branch> branches = new ArrayList<>();
 		try {
@@ -359,7 +364,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/updateBorrower", method=RequestMethod.POST, consumes="application/json")
+	//@RequestMapping(value="/updateBorrower", method=RequestMethod.POST, consumes="application/json")
 	public String updateBorrower(@RequestBody Borrower borrower) throws SQLException{
 		try {
 			if(borrower!=null){
@@ -381,7 +386,7 @@ public class AdministratorService {
 		return null;
 	}
 	
-	@RequestMapping(value="/readBorrowers", method=RequestMethod.GET, produces="application/json")
+	//@RequestMapping(value="/readBorrowers", method=RequestMethod.GET, produces="application/json")
 	public List<Borrower> readBorrowers(@RequestParam String searchString) throws SQLException{
 		List<Borrower> borrowers = new ArrayList<>();
 		try {
@@ -397,7 +402,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/overrideDue", method=RequestMethod.POST, consumes="application/json")
+	//@RequestMapping(value="/overrideDue", method=RequestMethod.POST, consumes="application/json")
 	public String overrideDue(@RequestBody BookLoans loans) throws SQLException{
 		try {
 			bldao.updateLoanDue(loans);
@@ -406,6 +411,35 @@ public class AdministratorService {
 			e.printStackTrace();
 			return "Unable to override Due Date, try again";
 		}
+	}
+	
+	@RequestMapping(value="/readBookCopies", method=RequestMethod.GET, produces="application/json")
+	public List<BookCopies> readBookCopies(@RequestParam Integer branchId) throws SQLException{
+		List<BookCopies> copies = new ArrayList<>();
+		List<BookCopies> ret = new ArrayList<>();
+		List<Book> books = new ArrayList<>();
+		try {
+			Branch branch = new Branch();
+			branch.setBranchId(branchId);
+			copies = bcdao.readCopiesByBranch(branch);
+			books = bdao.readAllBooks();
+			for(Book b : books) {
+				BookCopies bc = new BookCopies();
+				bc.setBook(b);
+				bc.setBranch(branch);
+				bc.setNoOfCopies(0);
+				ret.add(bc);
+			}
+			for(BookCopies bc : copies) {
+				for(BookCopies b : ret) {
+					if(bc.getBook().getBookId() == b.getBook().getBookId())
+						b.setNoOfCopies(bc.getNoOfCopies());
+				}
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 
 }

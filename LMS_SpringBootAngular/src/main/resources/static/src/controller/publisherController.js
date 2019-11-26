@@ -1,7 +1,10 @@
-lmsApp.controller("publisherController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/readPublishers?searchString=").success(function(data) {
+lmsApp.controller("publisherController", function($scope, $http, $window, lmsConstants, Pagination) {
+	$http.get(lmsConstants.URL_PREFIX+"/readPublishers?searchString=").success(function(data) {
 		$scope.publishers = data;
 		$scope.numOfPublishers = data.length;
+		$scope.pagination = Pagination.getNew(10);
+		$scope.pagination.numPages = Math.ceil($scope.publishers.length
+				/ $scope.pagination.perPage);
 	})
 	
 	$scope.cancelCreate = function(){
@@ -21,7 +24,7 @@ lmsApp.controller("publisherController", function($scope, $http, $window) {
 				pubPhone : $scope.phone
 		}
 		console.log(publisher)
-		$http.post("http://localhost:8070/lms/updatePublisher", JSON.stringify(publisher)).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX+"/updatePublisher", JSON.stringify(publisher)).success(function(data){})
 		$window.location = "#/publisher";
 	};
 	
@@ -48,7 +51,7 @@ lmsApp.controller("publisherController", function($scope, $http, $window) {
 				pubPhone : newPhone
 		}
 		console.log(publisher)
-		$http.post("http://localhost:8070/lms/updatePublisher", JSON.stringify(publisher)).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX+"/updatePublisher", JSON.stringify(publisher)).success(function(data){
 			
 		})
 		$window.location = "#/publisher";
@@ -63,7 +66,7 @@ lmsApp.controller("publisherController", function($scope, $http, $window) {
 		var publisher = {
 				pubId : obj.pubId
 		}
-		$http.post("http://localhost:8070/lms/updatePublisher", JSON.stringify(publisher)).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX+"/updatePublisher", JSON.stringify(publisher)).success(function(data){})
 		$window.location = "#/publisher";
 	};
 	

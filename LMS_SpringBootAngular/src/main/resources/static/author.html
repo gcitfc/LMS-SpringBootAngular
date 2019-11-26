@@ -16,13 +16,26 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="a in authors | orderBy : '+authorName'">
+			<tr ng-repeat="a in authors | orderBy : '+authorName' | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
 				<td scope="col">{{$index+1}}</td>
 				<td scope="col">{{a.authorName}}</td>
 				<td scope="col"><span ng-repeat="b in a.books | orderBy : '+title'">{{b.title}}, </span></td>		
 			</tr>
 		</tbody>
 	</table>
+	
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href=""
+				ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li class="page-item"
+				ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a class="page-link"
+				href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li class="page-item"><a class="page-link" href=""
+				ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
 
 	<a href="#/createAuthor"><button type="button" class="btn btn-success">+ New Author</button></a>
 	<a href="#/editAuthor"><button type="button" class="btn btn-warning">Edit / Delete Author</button></a>

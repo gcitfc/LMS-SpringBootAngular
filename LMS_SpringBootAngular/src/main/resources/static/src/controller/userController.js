@@ -1,5 +1,5 @@
 lmsApp.controller("userController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/admin/readBranches?searchString=").success(function(data) {
+	$http.get("http://localhost:8070/lms/readBranches?searchString=").success(function(data) {
 		$scope.branches = data;
 		$scope.numOfBranches = data.length;
 	})
@@ -54,7 +54,7 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 		var branchObj = JSON.parse($scope.thisBranch)
 		var branchId = branchObj.branchId
 		var cardNo = $scope.cardNo
-		$http.get("http://localhost:8070/lms/readBookCopies", 
+		$http.get("http://localhost:8070/lms/readAvailableBookCopies", 
 				{ params: {
 					    	branchId : branchId
 					}

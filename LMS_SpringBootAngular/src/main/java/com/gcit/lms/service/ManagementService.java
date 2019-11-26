@@ -127,7 +127,12 @@ public class ManagementService {
 	
 	@RequestMapping(value="/readBookCopies", method=RequestMethod.GET, produces={"application/json", "application/xml"})
 	public List<BookCopies> readBookCopies(@RequestParam Integer branchId) throws SQLException{
-		return lService.readBookCopies(branchId);
+		return aService.readBookCopies(branchId);
+	}
+	
+	@RequestMapping(value="/readAvailableBookCopies", method=RequestMethod.GET, produces={"application/json", "application/xml"})
+	public List<BookCopies> readAvailableBookCopies(@RequestParam Integer branchId) throws SQLException{
+		return bService.readBookCopies(branchId);
 	}
 	
 	@RequestMapping(value="/validCardNo", method=RequestMethod.GET, produces={"application/json", "application/xml"})
