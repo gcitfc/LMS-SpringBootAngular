@@ -26,17 +26,17 @@ public class BorrowerDAO extends BaseDAO<Borrower> implements ResultSetExtractor
 	}
 	
 	public void updateBorrower(Borrower borrower) throws SQLException, ClassNotFoundException {
-		mySqlTemplate.update("UPDATE tbl_Borrower SET name = ?, address = ?, phone = ? where cardNo = ?",
+		mySqlTemplate.update("UPDATE tbl_borrower SET name = ?, address = ?, phone = ? where cardNo = ?",
 				new Object[] { borrower.getName(), borrower.getAddress(), borrower.getPhone(), borrower.getCardNo() });
 	}
 	
 	public void saveBorrower(Borrower borrower) throws ClassNotFoundException, SQLException {
-		mySqlTemplate.update("INSERT INTO tbl_Borrower (name, address, phone) values (?,?,?)", new Object[] { borrower.getName(), borrower.getAddress(), borrower.getPhone() });
+		mySqlTemplate.update("INSERT INTO tbl_borrower (name, address, phone) values (?,?,?)", new Object[] { borrower.getName(), borrower.getAddress(), borrower.getPhone() });
 	}
 	
 	public Integer saveBorrowerWithId(Borrower borrower) throws ClassNotFoundException, SQLException {		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		final String SAVE_BORROWER_ID_QUERY = "INSERT INTO tbl_Borrower (name, address, phone) values (?,?,?)";
+		final String SAVE_BORROWER_ID_QUERY = "INSERT INTO tbl_borrower (name, address, phone) values (?,?,?)";
 		mySqlTemplate.update(connection -> {
 	        PreparedStatement ps = connection
 	          .prepareStatement(SAVE_BORROWER_ID_QUERY, Statement.RETURN_GENERATED_KEYS);
@@ -49,33 +49,33 @@ public class BorrowerDAO extends BaseDAO<Borrower> implements ResultSetExtractor
 	}
 
 	public void updateBorrowerName(Borrower borrower) throws SQLException, ClassNotFoundException {
-		mySqlTemplate.update("UPDATE tbl_Borrower SET name = ? where cardNo = ?",
+		mySqlTemplate.update("UPDATE tbl_borrower SET name = ? where cardNo = ?",
 				new Object[] { borrower.getName(), borrower.getCardNo() });
 
 	}
 	
 	public void updateBorrowerAddress(Borrower borrower) throws SQLException, ClassNotFoundException {
-		mySqlTemplate.update("UPDATE tbl_Borrower SET address = ? where cardNo = ?",
+		mySqlTemplate.update("UPDATE tbl_borrower SET address = ? where cardNo = ?",
 				new Object[] { borrower.getAddress(), borrower.getCardNo() });
 	}
 	
 	public void updateBorrowerPhone(Borrower borrower) throws SQLException, ClassNotFoundException {
-		mySqlTemplate.update("UPDATE tbl_Borrower SET phone = ? where cardNo = ?",
+		mySqlTemplate.update("UPDATE tbl_borrower SET phone = ? where cardNo = ?",
 				new Object[] { borrower.getPhone(), borrower.getCardNo() });
 	}
 		
 
 	public void deleteBorrower(Borrower borrower) throws ClassNotFoundException, SQLException {
-		mySqlTemplate.update("delete from tbl_Borrower where cardNo = ?", new Object[] { borrower.getCardNo() });
+		mySqlTemplate.update("delete from tbl_borrower where cardNo = ?", new Object[] { borrower.getCardNo() });
 	}
 
 	public List<Borrower> readAllBorrowers() throws ClassNotFoundException, SQLException {
-		return mySqlTemplate.query("SELECT * FROM tbl_Borrower", this);
+		return mySqlTemplate.query("SELECT * FROM tbl_borrower", this);
 	}
 	
 	public List<Borrower> readAllBorrowersByName(String borrowerName) throws ClassNotFoundException, SQLException {
 		borrowerName = "%"+borrowerName+"%";
-		return mySqlTemplate.query("SELECT * FROM tbl_Borrower where name like ?", new Object[]{borrowerName}, this);
+		return mySqlTemplate.query("SELECT * FROM tbl_borrower where name like ?", new Object[]{borrowerName}, this);
 	}
 
 	public Borrower getLoansAtBranch(Borrower b, Integer branchId) throws SQLException, ClassNotFoundException {
