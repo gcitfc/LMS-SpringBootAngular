@@ -42,7 +42,7 @@ lmsApp.controller("bookController", function($scope, $http, $window, lmsConstant
 				publisher: JSON.parse($scope.bookPublisher)
 		}
 		
-		$http.post("http://localhost:8070/lms/saveBook", book).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX+"/saveBook", book).success(function(data){
 			
 		})
 		$window.location = "#/book";
