@@ -18,39 +18,39 @@ lmsApp.config(["$routeProvider", function($routeProvider){
 	}).when("/editAuthor", {
 		templateUrl: "editAuthor.html"
 	}).when("/genre", {
-		templateUrl: "./genre/genre.html"
+		templateUrl: "./Genre/genre.html"
 	}).when("/createGenre", {
-		templateUrl: "./genre/newGenre.html"
+		templateUrl: "./Genre/newGenre.html"
 	}).when("/editGenre", {
-		templateUrl: "./genre/editGenre.html"
+		templateUrl: "./Genre/editGenre.html"
 	}).when("/borrowerList", {
-		templateUrl: "./borrower/borrower.html"
+		templateUrl: "./Borrower/borrower.html"
 	}).when("/createBorrower", {
-		templateUrl: "./borrower/newBorrower.html"
+		templateUrl: "./Borrower/newBorrower.html"
 	}).when("/editBorrower", {
-		templateUrl: "./borrower/editBorrower.html"
+		templateUrl: "./Borrower/editBorrower.html"
 	}).when("/publisher", {
-		templateUrl: "./publisher/publisher.html"
+		templateUrl: "./Publisher/publisher.html"
 	}).when("/createPublisher", {
-		templateUrl: "./publisher/newPublisher.html"
+		templateUrl: "./Publisher/newPublisher.html"
 	}).when("/editPublisher", {
-		templateUrl: "./publisher/editPublisher.html"
+		templateUrl: "./Publisher/editPublisher.html"
 	}).when("/branch", {
-		templateUrl: "./branch/branch.html"
+		templateUrl: "./Branch/branch.html"
 	}).when("/createBranch", {
-		templateUrl: "./branch/newBranch.html"
+		templateUrl: "./Branch/newBranch.html"
 	}).when("/editBranch", {
-		templateUrl: "./branch/editBranch.html"
+		templateUrl: "./Branch/editBranch.html"
 	}).when("/override", {
-		templateUrl: "./override/override.html"
+		templateUrl: "./Override/override.html"
 	}).when("/overrideRecords", {
-		templateUrl: "./override/loanRecords.html"
+		templateUrl: "./Override/loanRecords.html"
 	}).when("/lib", {
 		templateUrl: "./librarian.html"
 	}).when("/libAddCopies", {
-		templateUrl: "./librarian/addCopies.html"
+		templateUrl: "./Librarian/addCopies.html"
 	}).when("/libEditBranch", {
-		templateUrl: "./librarian/editBranch.html"
+		templateUrl: "./Librarian/editBranch.html"
 	}).when("/borrower", {
 		templateUrl: "./borrower.html"
 	})

@@ -1,10 +1,10 @@
-lmsApp.controller("userController", function($scope, $http, $window) {
-	$http.get("http://localhost:8070/lms/readBranches?searchString=").success(function(data) {
+lmsApp.controller("userController", function($scope, $http, $window, lmsConstants) {
+	$http.get(lmsConstants.URL_PREFIX + "/readBranches?searchString=").success(function(data) {
 		$scope.branches = data;
 		$scope.numOfBranches = data.length;
 	})
 	
-	$http.get("http://localhost:8070/lms/readBorrowers?searchString=").success(function(data) {
+	$http.get(lmsConstants.URL_PREFIX + "/readBorrowers?searchString=").success(function(data) {
 		$scope.borrowers = data;
 		$scope.numOfBorrowers = data.length;
 	})
@@ -33,7 +33,7 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 		}
 		$scope.returning = true
 		var cardNo = $scope.cardNo	
-		$http.get("http://localhost:8070/lms/readBooksByBB", 
+		$http.get(lmsConstants.URL_PREFIX + "/readBooksByBB", 
 				{ params: {
 							cardNo : cardNo,
 					    	branchId : branchId
@@ -54,7 +54,7 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 		var branchObj = JSON.parse($scope.thisBranch)
 		var branchId = branchObj.branchId
 		var cardNo = $scope.cardNo
-		$http.get("http://localhost:8070/lms/readAvailableBookCopies", 
+		$http.get(lmsConstants.URL_PREFIX + "/readAvailableBookCopies", 
 				{ params: {
 					    	branchId : branchId
 					}
@@ -76,7 +76,7 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 				branch : branch,
 				borrower : borrower
 		}
-		$http.post("http://localhost:8070/lms/returnBook", loan).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX + "/returnBook", loan).success(function(data){})
 		alert("Book Returned Sucessfully")
 	};
 	
@@ -84,7 +84,7 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 		var branch = bc.branch
 		var book = bc.book
 		
-		$http.get("http://localhost:8070/lms/readBooksByBB", 
+		$http.get(lmsConstants.URL_PREFIX + "/readBooksByBB", 
 				{ params: {
 							cardNo : cardNo,
 					    	branchId : branch.branchId
@@ -111,7 +111,7 @@ lmsApp.controller("userController", function($scope, $http, $window) {
 				branch : branch,
 				borrower : borrower
 		}
-		$http.post("http://localhost:8070/lms/checkOutBook", loan).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX + "/checkOutBook", loan).success(function(data){})
 		alert("Book Checked Out Sucessfully")
 	};
 	

@@ -1,13 +1,13 @@
-lmsApp.controller("bookLoanController", function($scope, $http, $window) {
+lmsApp.controller("bookLoanController", function($scope, $http, $window, lmsConstants) {
 	
 	var record
 	
-	$http.get("http://localhost:8070/lms/readBorrowers?searchString=").success(function(data) {
+	$http.get(lmsConstants.URL_PREFIX + "/readBorrowers?searchString=").success(function(data) {
 		$scope.borrowers = data;
 		$scope.numOfBorrowers = data.length;
 	})
 	
-	$http.get("http://localhost:8070/lms/readBranches?searchString=").success(function(data) {
+	$http.get(lmsConstants.URL_PREFIX + "/readBranches?searchString=").success(function(data) {
 		$scope.branches = data;
 		$scope.numOfBranches = data.length;
 	})
@@ -35,7 +35,7 @@ lmsApp.controller("bookLoanController", function($scope, $http, $window) {
 			}
 		}
 		console.log(loan)
-		$http.get("http://localhost:8070/lms/getLoansByBnB", 
+		$http.get(lmsConstants.URL_PREFIX + "/getLoansByBnB", 
 				{ params: {
 					    	cardNo : cardNo,
 					    	branchId : branchId
@@ -58,7 +58,7 @@ lmsApp.controller("bookLoanController", function($scope, $http, $window) {
 		var loan = window.record
 		loan.dueDate = newDue
 		console.log(loan)
-		$http.post("http://localhost:8070/lms/overrideDue", loan).success(function(data){})
+		$http.post(lmsConstants.URL_PREFIX + "/overrideDue", loan).success(function(data){})
 	};
 	
 })

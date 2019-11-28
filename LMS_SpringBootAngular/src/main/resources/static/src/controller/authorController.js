@@ -1,5 +1,5 @@
-lmsApp.controller("authorController", function($scope, $http, $window, Pagination) {
-	$http.get("http://localhost:8070/lms/readAuthorsWithBooks?searchString=").success(function(data) {
+lmsApp.controller("authorController", function($scope, $http, $window, lmsConstants, Pagination) {
+	$http.get(lmsConstants.URL_PREFIX + "/readAuthorsWithBooks?searchString=").success(function(data) {
 		$scope.authors = data;
 		$scope.numOfAuthors = data.length;
 		
@@ -14,7 +14,7 @@ lmsApp.controller("authorController", function($scope, $http, $window, Paginatio
 		}
 		author = JSON.stringify(author)
 		console.log(author)
-		$http.post("http://localhost:8070/lms/updateAuthor", author).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX + "/updateAuthor", author).success(function(data){
 			
 		})
 		$window.location = "#/author";
@@ -26,7 +26,7 @@ lmsApp.controller("authorController", function($scope, $http, $window, Paginatio
 				authorId : authorObj['authorId'],
 				authorName : $scope.newName
 		}
-		$http.post("http://localhost:8070/lms/updateAuthor", author).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX + "/updateAuthor", author).success(function(data){
 			
 		})
 		$window.location = "#/author";
@@ -37,7 +37,7 @@ lmsApp.controller("authorController", function($scope, $http, $window, Paginatio
 		var author = {
 				authorId : authorObj['authorId']
 		}
-		$http.post("http://localhost:8070/lms/updateAuthor", author).success(function(data){
+		$http.post(lmsConstants.URL_PREFIX + "/updateAuthor", author).success(function(data){
 			
 		})
 		$window.location = "#/author";
