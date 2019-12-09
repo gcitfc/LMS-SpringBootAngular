@@ -21,12 +21,12 @@
 		</RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="com.gcit.lms.service.ManagementService" level="debug" >
-            <AppenderRef ref="ConsoleAppender" />
+        <Logger name="lmsLogger" level="debug" additivity="false" >
+            <AppenderRef ref="FileAppender" />
         </Logger>
-
         <Root level="info">
             <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="FileAppender" />
         </Root>
     </Loggers>
 </Configuration>

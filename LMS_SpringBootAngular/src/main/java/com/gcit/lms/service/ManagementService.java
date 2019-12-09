@@ -38,7 +38,7 @@ public class ManagementService {
 	@Autowired
 	BorrowerService bService;
 
-	public static final Logger logger = LogManager.getLogger(ManagementService.class);
+	public static final Logger logger = LogManager.getLogger("lmsLogger");
 	
 	@RequestMapping(value="/readBooks", method=RequestMethod.GET, produces={"application/json", "application/xml"})
 	public List<Book> readBooks(@RequestParam String searchString) throws SQLException{
