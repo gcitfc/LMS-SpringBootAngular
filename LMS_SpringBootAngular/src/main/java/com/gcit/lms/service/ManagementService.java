@@ -1,6 +1,7 @@
 package com.gcit.lms.service;
 
 import java.sql.SQLException;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ import com.gcit.lms.entity.Branch;
 import com.gcit.lms.entity.Genre;
 import com.gcit.lms.entity.Publisher;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @RestController
 @CrossOrigin(origins = "http://gcitlms.s3.amazonaws.com")
 public class ManagementService {
@@ -33,9 +37,12 @@ public class ManagementService {
 	
 	@Autowired
 	BorrowerService bService;
+
+	public static final Logger logger = LogManager.getLogger(ManagementService.class);
 	
 	@RequestMapping(value="/readBooks", method=RequestMethod.GET, produces={"application/json", "application/xml"})
 	public List<Book> readBooks(@RequestParam String searchString) throws SQLException{
+		logger.debug("readBooks gets called.");
 		return aService.readBooksDetail(searchString);
 	}
 	
