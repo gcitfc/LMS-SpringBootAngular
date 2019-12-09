@@ -9,8 +9,18 @@
         <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-        <RollingFile name="FileAppender" fileName="logs/lms.log" immediateFlush="true" 
-	             filePattern="logs/log4j2-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="FileAppender" fileName="logs/info.log" immediateFlush="true" 
+	             filePattern="logs/info-log-%d{yyyy-MM-dd}-%i.log">
+		    <PatternLayout>
+		        <Pattern>${LOG_PATTERN}</Pattern>
+		    </PatternLayout>
+		    <Policies>
+		        <SizeBasedTriggeringPolicy size="10MB" />
+		    </Policies>
+		    <DefaultRolloverStrategy max="10"/>
+		</RollingFile>
+		<RollingFile name="ErrorAppender" fileName="logs/error.log" immediateFlush="true" 
+	             filePattern="logs/err-log-%d{yyyy-MM-dd}-%i.log">
 		    <PatternLayout>
 		        <Pattern>${LOG_PATTERN}</Pattern>
 		    </PatternLayout>
@@ -21,8 +31,11 @@
 		</RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="lmsLogger" level="debug" additivity="false" >
+        <Logger name="lmsLogger" level="info" additivity="false" >
             <AppenderRef ref="FileAppender" />
+        </Logger>
+        <Logger name="errLogger" level="error" additivity="false" >
+            <AppenderRef ref="ErrorAppender" />
         </Logger>
         <Root level="info">
             <AppenderRef ref="ConsoleAppender" />
